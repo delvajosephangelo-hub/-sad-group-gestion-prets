@@ -40,11 +40,35 @@ Configuration
   // ou
   const API_BASE = 'http://<votre-ip-local>:3000' // téléphone et serveur sur le même réseau
 
-Déploiement du backend
-- Vous pouvez déployer le dossier /backend sur Vercel, Render, Heroku ou autre.
-- Exemple (Render) : push sur GitHub + créer un service Node qui lance `npm start`.
+
+Déployer le backend sur Render (recommandé)
+
+1) Créez un compte sur https://render.com et connectez votre compte GitHub.
+
+2) Méthode A — importer `render.yaml` (recommandé si vous avez plusieurs services)
+   - Dans le tableau de bord Render: New -> Import from Git Repository -> sélectionnez votre dépôt
+   - Render va détecter le fichier `render.yaml` et proposer de créer le service `telecommande-backend`.
+   - Vérifiez les commandes de build et de démarrage (Build: `cd backend && npm install`, Start: `cd backend && npm start`) puis déployez.
+
+3) Méthode B — créer un Web Service manuellement
+   - New -> Web Service
+   - Connectez le repo `delvajosephangelo-hub/-sad-group-gestion-prets`, branche: `main`.
+   - Build Command: `cd backend && npm install`
+   - Start Command: `cd backend && npm start`
+   - Déployer.
+
+4) Après le déploiement, Render fournit une URL publique du service du type `https://telecommande-backend.onrender.com`.
+   - Copiez cette URL.
+   - Dites-le moi (ou ouvrez une issue) et je mettrai à jour `App.js` pour remplacer le placeholder `API_BASE` par cette URL afin que l'application mobile appelle directement votre backend.
+
+Notes sur la configuration et sécurité
+- Par défaut le service est public. Si vous exposez un appareil réel, protégez l'API avec un token dans les headers ou une clé API.
+- Pour utiliser HTTPS et éviter les problèmes de CORS, Render fournit un domaine HTTPS valide.
+
+Déploiement alternatif: Vercel
+- Si vous préférez Vercel, vous pouvez aussi connecter le repo et créer un Web Service, mais Render est plus simple pour exécuter un serveur Express tel quel.
 
 A propos des commits
 - Nom affiché dans le README: ANGEL
 
-Si vous voulez que je configure le déploiement automatique (Vercel/Render) ou que je remplace le placeholder API_BASE par votre URL d'API, dites-le et je m'en occupe.
+Si vous voulez que je fasse automatiquement la mise à jour d'`App.js` une fois que vous avez déployé et m'avez donné l'URL publique, dites "Mettez à jour App.js avec l'URL: https://..." et je pousserai la mise à jour.

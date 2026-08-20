@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: telecommande-backend
+    env: node
+    repo: https://github.com/delvajosephangelo-hub/-sad-group-gestion-prets
+    branch: main
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    autoDeploy: true
